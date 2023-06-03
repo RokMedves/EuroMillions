@@ -7,12 +7,11 @@ I know what you are going to say: "Aren't all numbers on a lottery
 equally likely?"
 
 Yes, they are! However, the more people bet on the same numbers, the
-more they have to share their winnings. An ideal number to bet on
-would be one which no other person bets on, such that you get one the
-winnings.
+more they have to share their winnings. An ideal number would be one
+which no other person bets on, such that you get one the winnings.
 
 In this project a machine learning model in trained on past Euromillions
-lottery winning number to infer people's betting behaviour
+lottery winning numbers to infer people's betting behaviour
 
 
 
