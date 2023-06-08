@@ -161,7 +161,7 @@ class FeatureEngineering:
             the rows that will be checked
         
         Returns
-        -------
+        -------.is_post_2000,
         int
             The number of numbers in the data matching the pattern
         """
@@ -217,6 +217,8 @@ class FeatureEngineering:
         self.data['NL sum bin']  = label_encoder.fit_transform(pd.cut(self.data["NL sum"], 6))
 
         # ---------------------------- drop unwanted values -----------------------------------------
-        self.data  = self.data.drop(columns = ['Day', 'DD', 'MMM', 'YYYY', 'Wins'])
-        
+        for col in ['Day', 'DD', 'MMM', 'YYYY', 'Wins']:
+            if col in self.data.columns:
+                self.data.drop(columns = [col], inplace=True)
+
         return self.data
