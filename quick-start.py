@@ -126,4 +126,5 @@ if __name__ == "__main__":
     
     # ------------------------------ Make a prediction ------------------------------ 
     result = loaded_model.predict_proba(user_input[model_features])
+    print(user_input[model_features])
     print(result)
