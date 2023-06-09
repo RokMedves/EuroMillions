@@ -46,7 +46,7 @@ class InputHelper:
         print("#                   Euromillions Quickstart")
         print("#                        by Rok Medves")
         print("#          https://github.com/RokMedves/EuroMillions")
-        print("                    model date: 09.06.2023")
+        print("#                   model date: 09.06.2023")
         print("#")
         print("#        This script evaluated YOUR Euromillions number.")
         print("#")
