@@ -27,6 +27,7 @@ Interested in how well you'd do in the Euromillions?
 ### Deep dive 
 
 Interested in the details?
+Prerequisites: `Python3`: `scikit-learn, pandas, numpy, seaborn, matplotlib, scipy`
 1. Clone the git repo
 2. Open `euromillions.ipynb` in your favourite editor
 3. Run the code
