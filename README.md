@@ -53,6 +53,6 @@ the average winnings were above average or not (see figure below).
 XGBoost, Random Forest and a C-SVM -- discerns good from bad numbers
 with a 67% accuracy, indicating that it has learnt people's betting behaviour.
 
-![Good and bad numbers](./plots/avg-winnings-class.pdf "Distribution of
+![Good and bad numbers](./plots/avg-winnings-class.png "Distribution of
  winnings at the lottery")
 
