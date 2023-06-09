@@ -41,23 +41,23 @@ class InputHelper:
         Prints the hello message
         """
         # ------------------------------ Some intro stuff ------------------------------ 
-        print("############################################################")
-        print("#                         You are using             ")
-        print("#                   Euromillions Quickstart")
-        print("#                        by Rok Medves")
-        print("#          https://github.com/RokMedves/EuroMillions")
-        print("#                   model date: 09.06.2023")
-        print("#")
-        print("#        This script evaluated YOUR Euromillions number.")
-        print("#")
-        print("#        Lottery rules:")
-        print("#        On the Euromillions lottery you bet")
-        print("#        on a 7-placed number consisting of: ")
-        print("#        -> 5 unique numbers between 1 and 50 and")
-        print("#        -> 2 unique lucky numbers between 1 and 12")
-        print("#        Enter these below and see how well you'd do!")
-        print("#")
-        print("############################################################")
+        print("##############################################################")
+        print("#                         You are using                      #")
+        print("#                   EuroMillions Quickstart                  #")
+        print("#                        by Rok Medves                       #")
+        print("#          https://github.com/RokMedves/EuroMillions         #")
+        print("#                 ML model date: 09.06.2023                  #")
+        print("#                                                            #")
+        print("#        This script evaluates YOUR EuroMillions number.     #")
+        print("#                                                            #")
+        print("#        Lottery rules:                                      #")
+        print("#        On the EuroMillions lottery you                     #")
+        print("#        bet on a 7 numbers consisting of:                   #")
+        print("#        -> 5 unique numbers between 1 and 50 and            #")
+        print("#        -> 2 unique lucky numbers between 1 and 12          #")
+        print("#        Enter these below and see how well you'd do!        #")
+        print("#                                                            #")
+        print("##############################################################")
 
     def get_user_input(self) -> pd.DataFrame:
         """
@@ -184,6 +184,7 @@ if __name__ == "__main__":
         """
         return "BAD" if not index else "GOOD"  
 
+    print("\n--------------------------------------------------------------")
     # format the output and give it to the user
     print("The model predicts your number:\n{0}\nis a {1} number to bet on with {2:.1f}% confidence"
           .format(user_input.drop('YYYY', axis=1), num_to_words(best_label),result[0][best_label]*100))
