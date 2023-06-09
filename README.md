@@ -16,6 +16,14 @@ lottery winning numbers to infer people's betting behaviour.
 
 
 ## Usage
+### Quickstart
+
+1. Clote the git repo
+2. run quick-start.py
+3. Follow the prompts and see how well your favourite number would do 
+   on the Euromillions
+
+### Deep dive
 
 1. Clone the git repo
 2. Open `euromillions.ipynb` in your favourite editor
