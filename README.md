@@ -10,8 +10,8 @@ Yes, they are! However, the more people bet on the same numbers, the
 more they have to share their winnings. An ideal number would be one
 that no other person bets on, such that you get one the winnings.
 
-In this project a machine learning model in trained on past Euromillions
-lottery winning numbers to infer people's betting behaviour.
+In this project, a machine learning model is trained on past Euromillions
+lottery numbers to infer people's betting behaviour.
 
 
 
