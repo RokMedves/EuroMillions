@@ -19,14 +19,21 @@ lottery winning numbers to infer people's betting behaviour.
 ### Quickstart
 
 Interested in how well you'd do in the Euromillions?
-1. Clone the git repo
-2. run quick-start.py
-3. Follow the prompts and see how well your favourite number would do 
+
+1. Open the terminal 
+2. run `git clone https://github.com/RokMedves/EuroMillions.git` 
+3. run `cd EuroMillions`
+4. run `python3 -m venv euromillions-venv`
+5. run `source euromillions-venv/bin/activate`
+6. run `python3 -m pip install scikit-learn pandas numpy`
+7. run `python3 quick-start.py`
+8. Follow the prompts and see how well your favourite number would do 
    on the Euromillions
 
 ### Deep dive 
 
 Interested in the details?
+
 Prerequisites: `Python3`: `scikit-learn, pandas, numpy, seaborn, matplotlib, scipy`
 1. Clone the git repo
 2. Open `euromillions.ipynb` in your favourite editor
