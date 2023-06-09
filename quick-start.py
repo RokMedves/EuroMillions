@@ -126,14 +126,13 @@ class InputHelper:
 if __name__ == "__main__":
 
     # ------------------------------ get the user input ------------------------------ 
-    # Input in handled through the InputHelper class
+    # Input is handled through the InputHelper class
     
     helper = InputHelper()
     user_input = helper.get_user_input()
     user_cols = user_input.columns
 
-    # ------------------------------ get the user input ------------------------------ 
-    # Input in handled through the InputHelper class
+    # ------------------------------ get the original dataset ------------------------------ 
     # In order to get realistically engineered features, 
     # we need to import the whole dataset.
     # 
@@ -142,7 +141,7 @@ if __name__ == "__main__":
     # (for example via "pd.cut(self.data['N sum'], 6)" in sec/dataEng.py).
     # The hack here is to just append the user's data to the whole dataset
     # and reengineer all the features. While this isn't perfect, the assumption
-    # is that the dataset is sifficiently large that this gives an equivalent
+    # is that the dataset is sufficiently large that this gives an equivalent
     # set of engineered features as in the original analysis.
     
     dataset_filename = 'saved-models/saved-dataset.sav'
@@ -168,7 +167,7 @@ if __name__ == "__main__":
     # ------------------------------ Make a prediction ------------------------------ 
     
     # To evaluate the prediction, re-select the user's entry 
-    # (index -1 in the DataFrame), and select only the model-relevant
+    # (index -1 in the user_plus_dataset DataFrame), and select only the model-relevant
     # featrues. Then, evaluate the prediction and format it nicely
 
     formated_input = user_plus_dataset.iloc[[-1]][model_features]
@@ -184,7 +183,7 @@ if __name__ == "__main__":
         """
         return "BAD" if not index else "GOOD"  
 
-    print("\n--------------------------------------------------------------")
     # format the output and give it to the user
+    print("\n--------------------------------------------------------------")
     print("The model predicts your number:\n{0}\nis a {1} number to bet on with {2:.1f}% confidence"
           .format(user_input.drop('YYYY', axis=1), num_to_words(best_label),result[0][best_label]*100))
