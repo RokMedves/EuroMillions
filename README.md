@@ -11,7 +11,7 @@ more they have to share their winnings. An ideal number would be one
 that no other person bets on, such that you get one the winnings.
 
 In this project, a machine learning model is trained on past Euromillions
-lottery numbers to infer people's betting behaviour.
+lottery numbers to infer people's betting behaviour and test your Euromillions numbers.
 
 
 
@@ -44,7 +44,7 @@ Interested in the details?
 1. The dataset information can be found in
 [here](./datasets).
 2. Numbers are split into "good" and "bad" numbers based on whether
-the average winnings were above average or not (see figure below).
+the average winnings are above or below average (see figure below).
 3. Newly engineered features test whether the drawn numbers are
    - small;
    - form a valid date;
