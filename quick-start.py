@@ -42,7 +42,7 @@ class InputHelper:
         """
         # ------------------------------ Some intro stuff ------------------------------ 
         print("##############################################################")
-        print("#                         You are using                      #")
+        print("#                        You are using                       #")
         print("#                   EuroMillions Quickstart                  #")
         print("#                        by Rok Medves                       #")
         print("#          https://github.com/RokMedves/EuroMillions         #")
@@ -72,10 +72,10 @@ class InputHelper:
         """
 
         # get 5 unique number N from user between 1 and 50
-        Ns = sorted(list(map(int, input("Enter 5 unique numbers between 1 and 50: ").split())))
+        Ns = sorted(list(map(int, input("Enter 5 unique numbers between 1 and 50 (for example 45 30 12 1 7): ").split())))
         # validate the user input
         self.validate_nums(nums = Ns, nnums = 5, nmin = 1, nmax = 50)
-        Ls = sorted(list(map(int, input("Enter 2 unique lucky numbers between 1 and 12: ").split())))
+        Ls = sorted(list(map(int, input("Enter 2 unique lucky numbers between 1 and 12 (for example 7 12): ").split())))
         # validate the user input
         self.validate_nums(nums = Ls, nnums = 2, nmin = 1, nmax = 12)
 
