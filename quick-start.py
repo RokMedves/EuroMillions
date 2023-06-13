@@ -114,11 +114,20 @@ class InputHelper:
         """
 
         # test whether exactly nnums were entered
-        assert(len(nums)==nnums and f"Expected input to be set of {nnums} numbers; {len(nums)} were received")
+        #assert(len(nums)==nnums and f"Expected input to be set of {nnums} numbers; {len(nums)} were received")
+        if len(nums) != nnums:
+            print(f"Error: Expected to receive {nnums} numbers; {len(nums)} were received")
+            exit(1)
         # test number uniqueness
-        assert(len(list(set(nums))) == nnums and "Inputs must be unique")
+        # assert(len(list(set(nums))) == nnums and "Inputs must be unique")
+        if len(list(set(nums))) != nnums:
+            print("Error: Inputs must be unique")
+            exit(1)
         # test whether numbers are in the correct range
-        assert(all(map(lambda i: (i>=nmin) and (i<=nmax), nums)) and f"Inputs must be between {nmin} and {nmax}")
+        # assert(all(map(lambda i: (i>=nmin) and (i<=nmax), nums)) and f"Inputs must be between {nmin} and {nmax}")
+        if any(map(lambda i: (i<nmin) or (i>nmax), nums)):
+            print(f"Error: Inputs must be between {nmin} and {nmax}")
+            exit(1)
         
 
         return True
