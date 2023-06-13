@@ -27,8 +27,14 @@ class InputHelper:
         The current year
 
     Methods
-    -------
-    validate_N(Ns : list) -> bool
+    -------     
+    print_hello()
+        Prints the hello message for the start of the program
+
+    get_user_input() -> pd.DataFrame
+        Gets the user input and validates it. Returns dataframe of inputs
+    
+    validate_nums(self, nums, nnums = 5, nmin=1, nmax=50) -> bool
         Validates whether the user's unput was a valid EuroMillions number
     """
 
