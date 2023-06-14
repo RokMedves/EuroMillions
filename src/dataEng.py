@@ -1,5 +1,6 @@
 import pandas as pd
-
+from scipy.special import binom
+import itertools
 class FeatureEngineering:
     """
     A feature engineering class.
@@ -12,6 +13,8 @@ class FeatureEngineering:
     data : pd.DataFrame
         The data which will be engineered
     
+    win_frac: dict
+        The fraction of the prize pool for each winning category (See ../datasets/README.md for details)
 
     Methods
     -------
@@ -32,11 +35,30 @@ class FeatureEngineering:
 
     get_all_7_numbers(sc : pd.Series) -> int
         Checks how many numbers the row c contains that all have the number 7
+
+    prob_NL_analyt(self, N: int, L : int) -> float
+        Computes the probability to get N normal and L lucky numbers right in a draw
+
+    score_numbers(self, row: pd.Series) -> float
+        Given a row from the euromillions dataset, generate a score for the given number with the recipe described in euromillions.ipynb
+
+    score_dataset(self, df : pd.DataFrame) -> pd.DataFrame
+        Scores the datset by assigning an 'avg win' column representing the average winnings relative to the whole dataset
     """
 
     def __init__(self, df : pd.DataFrame) -> None:
         self.data = df
 
+        self.win_frac= {5: {0: 0.0061, 1: 0.0261, 2: 0.5000},
+                        4: {0: 0.0026, 1: 0.0035, 2: 0.0019},
+                        3: {0: 0.0270, 1: 0.0145, 2: 0.0037},
+                        2: {0: 0.1659, 1: 0.1030, 2: 0.0130},
+                        1: {2: 0.0327}}
+
+
+    #
+    # --------------------------------- Methods for new features ---------------------------------
+    #
     def is_date(self, c : pd.Series) -> bool:
         """ 
         Checks whether the row c contains
@@ -225,3 +247,84 @@ class FeatureEngineering:
                 self.data.drop(columns = [col], inplace=True)
 
         return self.data
+    
+
+    #
+    # --------------------------------- Methods for creating target variable ---------------------------------
+    #
+
+    def prob_NL_analyt(self, N: int, L : int) -> float:
+        """ Computes the probability to get N normal and L lucky numbers right in a draw
+
+        Parameters
+        ----------
+        N : int
+            Number of correct drawn normal numbers
+        L : int
+            Number of correct drawn lucky number
+
+        Returns
+        -------
+            Probability Pr[win in category N+L]
+        """
+        return binom(5, N) * binom(45, 5-N) * binom(2, L) * binom(10, 2-L) / (binom(50, 5) * binom(12, 2))
+
+    # do this row per row
+    def score_numbers(self, row: pd.Series) -> float:
+        """
+        Given a row from the euromillions dataset, generate 
+        a score for the given number with the recipe described in euromillions.ipynb.
+        If called with pd.apply(), this function generates a
+        whole pd.Series().
+
+        Parameters
+        ----------
+        row: pd.Series
+            Row of the data to score
+
+        Returns
+        -------
+            average winnigs for that number
+        """
+        avg_win = 0
+        # loop through the possible winning groups
+        for N, L in itertools.product(range(1, 6), range(0, 3)):
+            nl_tag = str(N)+ ("+"+str(L) if L!=0 else "")
+            if nl_tag in row.index:
+                pr_nl_win   = self.prob_NL_analyt(N, L) # Pr[N,L] = Pr[N,L | win] * 1/13 from above
+                nl_win_frac = self.win_frac[N][L]       # f_p,k=(N,L)
+                num_winners = row[nl_tag]
+                num_sales   = row['Sales']
+
+                f_w_nl      = (0 if num_winners == 0 else num_sales/num_winners) # f_w,k=(N,L)
+
+                avg_win += pr_nl_win * nl_win_frac * f_w_nl
+                # Diagnostic print 
+                # print("k = {0}\t\tPr[N,L] = {1:.4f}, f_w,k = {2:.4f}, n_k = {3}\t\tE[win] = {4}".format(nl_tag, pr_nl_win, nl_win_frac, num_winners, avg_win))
+        return avg_win
+
+    def score_dataset(self, df : pd.DataFrame) -> pd.DataFrame:
+        """
+        Scores the datset by assigning an 'avg win' column
+        representing the average winnings relative to the
+        whole dataset
+
+        Parameters
+        ----------
+        df: pd.DataFrame
+            The DataFrame to be scored 
+        Returns
+        -------
+        pd.DataFrame
+            The scored dataframe
+        """
+        # generate the average winnings for each number
+        scores = df.apply(self.score_numbers, axis = 'columns')
+        # devide by the mean of each, thus getting the final score
+        scores = scores / scores.mean()
+
+        # incorporate that into the euromillions dataset
+        df = pd.concat([df, scores], axis = 1).rename(columns={0: 'avg win'})
+
+
+        return df
