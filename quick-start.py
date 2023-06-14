@@ -17,6 +17,10 @@ import pandas as pd
 from datetime import datetime
 from src.dataEng import FeatureEngineering
 
+# For ease of use, write the model  
+# date as a global variable
+model_date = "09.06.2023"
+
 class InputHelper:
     """
     Helper class that gets user input
@@ -52,7 +56,7 @@ class InputHelper:
         print("#                   EuroMillions Quickstart                  #")
         print("#                        by Rok Medves                       #")
         print("#          https://github.com/RokMedves/EuroMillions         #")
-        print("#                 ML model date: 09.06.2023                  #")
+        print(f"#                 ML model date: {model_date}                  #")
         print("#                                                            #")
         print("#        This script evaluates YOUR EuroMillions number.     #")
         print("#                                                            #")
