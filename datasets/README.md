@@ -29,7 +29,7 @@ By ***Rok Medves***
 4. Computing the winning chance of getting n out of 5 right and l out of 2 right it's, it is (using aCb notation for *a choose b*)
   *Pr[n, l] = [5Cn * 45C(5-n)] x [2Cl * 10C(2-l)] / [50C5 x 12C2]*
  
-5. The chance of winning anything is 1/13
+5. The chance of winning anything given today's rules (post September 24th 2016) is 1/13
 
 6. The lottery prizes work as follows (extracted from [this site](https://www.national-lottery.com/euromillions/odds-and-prizes))
   > There are 13 different EuroMillions prizes on offer in every draw. However, the amount you win in each tier is not a fixed amount. Instead, a percentage of the total prize fund is allocated to each category and that is split between winners. This is known as a pari-mutuel method and leads to variation in the prize amounts, because the number of tickets sold and the number of winners is always different.
