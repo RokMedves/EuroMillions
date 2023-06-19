@@ -36,13 +36,16 @@ class FeatureEngineering:
     get_all_7_numbers(sc : pd.Series) -> int
         Checks how many numbers the row c contains that all have the number 7
 
-    prob_NL_analyt(self, N: int, L : int) -> float
+    drop_unwanted_values() -> pd.DataFrame
+        Drop unwanted information from the dataframe    
+    
+    prob_NL_analyt(N: int, L : int) -> float
         Computes the probability to get N normal and L lucky numbers right in a draw
 
-    score_numbers(self, row: pd.Series) -> float
+    score_numbers(row: pd.Series) -> float
         Given a row from the euromillions dataset, generate a score for the given number with the recipe described in euromillions.ipynb
 
-    score_dataset(self, df : pd.DataFrame) -> pd.DataFrame
+    score_dataset(df : pd.DataFrame) -> pd.DataFrame
         Scores the datset by assigning an 'avg win' column representing the average winnings relative to the whole dataset
     """
 
@@ -238,6 +241,18 @@ class FeatureEngineering:
         self.data['NL sum']      = self.data['N sum'] + self.data['L sum']
         self.data['NL sum bin']  = label_encoder.fit_transform(pd.cut(self.data["NL sum"], 6))
 
+    
+    def drop_unwanted_values(self) -> pd.DataFrame:
+        """
+        Drop unwanted information from the dataframe
+
+        Returns
+        -------
+        pd.DataFrame
+            The dataframe without the unused columns
+        """
+
+
         # ---------------------------- drop unwanted values -----------------------------------------
         # Written in a slightly awkward way to nesure that different
         # bits of code can use these functions regardless of whether
@@ -253,7 +268,7 @@ class FeatureEngineering:
     # --------------------------------- Methods for creating target variable ---------------------------------
     #
 
-    def prob_NL_analyt(self, N: int, L : int) -> float:
+    def prob_NL_analyt(self, N: int, L : int, Lmax = 12) -> float:
         """ Computes the probability to get N normal and L lucky numbers right in a draw
 
         Parameters
@@ -262,12 +277,13 @@ class FeatureEngineering:
             Number of correct drawn normal numbers
         L : int
             Number of correct drawn lucky number
-
+        Lmax : int
+            The number of lucky numbers in the draw pool. 12 today
         Returns
         -------
             Probability Pr[win in category N+L]
         """
-        return binom(5, N) * binom(45, 5-N) * binom(2, L) * binom(10, 2-L) / (binom(50, 5) * binom(12, 2))
+        return binom(5, N) * binom(45, 5-N) * binom(2, L) * binom(Lmax-2, 2-L) / (binom(50, 5) * binom(Lmax, 2))
 
     # do this row per row
     def score_numbers(self, row: pd.Series) -> float:

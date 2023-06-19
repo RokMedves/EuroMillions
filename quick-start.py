@@ -171,6 +171,7 @@ if __name__ == "__main__":
     # For this we use the FeatureEngineering class located in src/dataEng.py
     eng = FeatureEngineering(user_plus_dataset)
     eng.engineer_features()
+    eng.drop_unwanted_values()
 
         
     # ------------------------------ load the model from disk ------------------------------ 
