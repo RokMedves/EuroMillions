@@ -252,7 +252,6 @@ class FeatureEngineering:
             The dataframe without the unused columns
         """
 
-
         # ---------------------------- drop unwanted values -----------------------------------------
         # Written in a slightly awkward way to nesure that different
         # bits of code can use these functions regardless of whether
@@ -302,12 +301,32 @@ class FeatureEngineering:
         -------
             average winnigs for that number
         """
+
+        # The scoring must be date-specific. 
+        # As mentioned in ./datasets/README.md, the number of drawn lucky numers changed:
+        # -> After  Sep 24th 2016, the maximum number of lucky numbers was 12
+        # -> Before Sep 24th 2016 and after May 10th 2011, the maximum number was 11
+        #
+        # The below code therefore differentiates between the two cases
+
+        # Figure out what Lmax we need to use depending on the date in the row 
+        # Logic: Lmax = 12 if
+        # 1) it's after 2016 OR 
+        # 2) if it's the year 2016, but it's after September OR
+        # 3) it's september 2016, but after the 24th
+        if  (row['YYYY'] > 2016) or \
+            (row['YYYY'] == 2016) * (row['MMM'] in ['Oct', 'Nov', 'Dec']) or\
+            (row['YYYY'] == 2016) * (row['MMM'] == 'Sep') * (row['DD'] >= 24):
+            Lmax = 12
+        else:
+            Lmax = 11
+
         avg_win = 0
         # loop through the possible winning groups
         for N, L in itertools.product(range(1, 6), range(0, 3)):
             nl_tag = str(N)+ ("+"+str(L) if L!=0 else "")
             if nl_tag in row.index:
-                pr_nl_win   = self.prob_NL_analyt(N, L) # Pr[N,L] = Pr[N,L | win] * 1/13 from above
+                pr_nl_win   = self.prob_NL_analyt(N, L, Lmax) # Pr[N,L] = Pr[N,L | win] * 1/13 from above
                 nl_win_frac = self.win_frac[N][L]       # f_p,k=(N,L)
                 num_winners = row[nl_tag]
                 num_sales   = row['Sales']
