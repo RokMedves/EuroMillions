@@ -12,3 +12,11 @@ Action plan:
 2. See whether the data follows the expected distributions
 3. See whether the model's predictive power drops for the new variable
 4. Introduce changes that would make it possible to include older data and repeat from step 2
+
+### Current status (21. 6. 202)
+
+- Adding historical data has tanked the model's performance. It clearly overfits, as seen by the fact that the training and test accuracies are 10% apart.
+- One can also obsere that the split between good and bad numbers is no longer very sharp, rather, it is quite smooth.
+- It would be good to know whether this is due to poor feature selection, or whether the target variable is not well defined
+- w.r.t the above point: the target variable still seems to follow a Gaussian, which is reassuring
+
