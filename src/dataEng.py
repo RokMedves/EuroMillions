@@ -202,6 +202,34 @@ class FeatureEngineering:
             total += n in c.values
         return total
     
+    def number_of_different_rows(self, r : pd.Series) -> int:
+        """
+        Return how many different rows on the EuroMillions ticket 
+        needed to be marked to get the betting number in row r.
+
+        That is, imagine needing to physically bet on the number
+        on a betting ticket. If all the numbers were drawn from the
+        same row, return 1, if 2 different rows, then 2, and so on
+
+        Parameters
+        ----------
+        r : pandas.Series
+            the rows that will be checked
+        
+        Returns
+        -------
+        int
+            The number of different rows in the ticket needed for the number
+        """ 
+
+        # the rows on the Euromillions ticket (see https://www.euromillions.eu.com/imagenes/euromillions-ticket.jpg)
+        bins=[0, 8, 16, 24, 32, 40, 48, 50]
+        # mask for selecting only N1 -> N5
+        Nmask = ['N'+str(i+1) for i in range(5)]
+        binned_row = pd.cut(r[Nmask], bins=bins)
+        return len(binned_row.unique())
+
+
     def engineer_features(self) -> pd.DataFrame:
         """
         Engineer new features for self.data from existing ones.
@@ -228,6 +256,7 @@ class FeatureEngineering:
         # ---------------------------- unlucky-numbers-based features -----------------------------------------
         self.data["7 pattern"]          = N_numbers.apply(self.get_all_7_numbers, axis = 1)
         # ---------------------------- betting-no-based features -----------------------------------------
+        self.data["N rows"]    = N_numbers.apply(self.number_of_different_rows, axis=1)
         self.data["N sum"]     = N_numbers.loc[:,'N1':].apply(lambda c: c.sum(), axis = 1)
         self.data["L sum"]     = L_numbers.apply(lambda c: c.sum(), axis = 1)
         self.data["N sum big"] = self.data["N sum"] > self.data["N sum"].mean()
