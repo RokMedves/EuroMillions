@@ -19,7 +19,7 @@ from src.dataEng import FeatureEngineering
 
 # For ease of use, write the model  
 # date as a global variable
-model_date = "09.06.2023"
+model_date = "26.06.2023"
 
 class InputHelper:
     """
