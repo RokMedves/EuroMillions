@@ -36,6 +36,9 @@ class FeatureEngineering:
     get_all_7_numbers(sc : pd.Series) -> int
         Checks how many numbers the row c contains that all have the number 7
 
+    number_of_different_rows(r : pd.Series) -> int
+        Return how many different rows on the EuroMillions ticket needed to be marked to get the betting number in row r.
+
     drop_unwanted_values() -> pd.DataFrame
         Drop unwanted information from the dataframe    
     
@@ -47,6 +50,7 @@ class FeatureEngineering:
 
     score_dataset(df : pd.DataFrame) -> pd.DataFrame
         Scores the datset by assigning an 'avg win' column representing the average winnings relative to the whole dataset
+    
     """
 
     def __init__(self, df : pd.DataFrame) -> None:
@@ -265,7 +269,7 @@ class FeatureEngineering:
         #  ---------------------------- binning features -----------------------------------------
         from sklearn.preprocessing import LabelEncoder
         label_encoder = LabelEncoder()
-        self.data['N sum bin']   = label_encoder.fit_transform(pd.cut(self.data['N sum'], 6))
+        self.data['N sum bin']   = label_encoder.fit_transform(pd.cut(self.data['N sum'], 10))
         self.data['L sum bin']   = label_encoder.fit_transform(pd.cut(self.data['L sum'], 6))
         self.data['NL sum']      = self.data['N sum'] + self.data['L sum']
         self.data['NL sum bin']  = label_encoder.fit_transform(pd.cut(self.data["NL sum"], 6))
