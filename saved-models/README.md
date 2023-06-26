@@ -18,4 +18,6 @@ They are primarily used by the `../quickstart.py` script to make predictions on 
 - Accuracy on training set: 67.3%
 - Accuracy on test set: 67.3%
 - It's confusion matrix can be found below:
+
+
 ![Confusion matrix](../plots/final-model-confusion-matrix.png "Confusion matrix computed on test dataset via the final predictive model.")
