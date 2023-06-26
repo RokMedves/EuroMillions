@@ -364,7 +364,8 @@ class FeatureEngineering:
                 num_winners = row[nl_tag]
                 num_sales   = row['Sales']
 
-                f_w_nl      = (0 if num_winners == 0 else num_sales/num_winners) # f_w,k=(N,L)
+                # f_w_nl      = (0 if num_winners == 0 else num_sales/num_winners) # f_w,k=(N,L)
+                f_w_nl      = (num_sales+1)/(num_winners+1)
 
                 avg_win += pr_nl_win * nl_win_frac * f_w_nl
                 # Diagnostic print 
@@ -389,6 +390,7 @@ class FeatureEngineering:
         # generate the average winnings for each number
         scores = df.apply(self.score_numbers, axis = 'columns')
         # devide by the mean of each, thus getting the final score
+        print(f"mean score: {scores.mean()}")
         scores = scores / scores.mean()
 
         # incorporate that into the euromillions dataset
