@@ -21,7 +21,7 @@ Prerequisites:
 `Python3: scikit-learn, pandas, numpy, seaborn, matplotlib, scipy`
 ### Quickstart
 
-Interested in how well you'd do in the Euromillions?
+Interested in how well you'd do in the EuroMillions?
 
 1. Clone the git repo 
 2. Run `python3 quick-start.py`
