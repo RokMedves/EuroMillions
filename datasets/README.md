@@ -80,3 +80,5 @@ where *E[winnings]* is the average of the winnings throughout all the numbers.
 Doing the above scoring post-September 24th 2016 reveals that the average winnings have increased in comparison to pre-September 24th 2016.
 This remains true even if one ignores (equivalantly marginalises over) the lucky numbers L.
 This implies that betting behavious pre- and post- September 24th 2016 differ, making it difficult to treat the dataset as one whole.
+
+Todo: For some reason the number of sales flucuates wildly, so it would be good to check how well the winnings/sales distribution follows the predicted theoretical values *as a function of time* (as we know that the average indeed looks fine).
