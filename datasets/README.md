@@ -80,5 +80,6 @@ where *E[winnings]* is the average of the winnings throughout all the numbers.
 Doing the above scoring post-September 24th 2016 reveals that the average winnings have increased in comparison to pre-September 24th 2016.
 This remains true even if one ignores (equivalantly marginalises over) the lucky numbers L.
 This implies that betting behavious pre- and post- September 24th 2016 differ, making it difficult to treat the dataset as one whole.
+A trace of that can be seen on a plot comparing the theoretical and actual winning probabilities for each group (N,L). Pre-September 24th 2016, the distribution is in good agreement with theory, however after that point, the 4+0 winning group starts to deviate for some reason. (Investigate?)
 
 Todo: For some reason the number of sales flucuates wildly, so it would be good to check how well the winnings/sales distribution follows the predicted theoretical values *as a function of time* (as we know that the average indeed looks fine).
