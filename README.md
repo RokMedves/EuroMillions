@@ -1,6 +1,8 @@
 # EuroMillions
 Finding good betting numbers on EuroMillions lottery.
 
+![banner](./plots/banner.png "EuroMillions Banner")
+
 ## Introduction
 
 I know what you are going to say: "Aren't all numbers on the lottery
