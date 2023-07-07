@@ -17,6 +17,7 @@ They are primarily used by the `../quickstart.py` script to make predictions on 
 - Data points: 1233
 - Accuracy on training set: 64.1%
 - Accuracy on test set: 61.2%
+- AUC on test set: 61.3%
 - It's confusion matrix can be found below:
 
 
