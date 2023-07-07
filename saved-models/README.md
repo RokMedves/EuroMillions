@@ -13,10 +13,10 @@ They are primarily used by the `../quickstart.py` script to make predictions on 
 # Current up-to-date model
 
 - Soft-voting model with Random Forest, C-SVM and XGBoost (for details see `../euromillions.ipynb`)
-- Dated: 26. 06. 2023
-- Data points: 671
-- Accuracy on training set: 67.3%
-- Accuracy on test set: 67.3%
+- Dated: 06. 07. 2023
+- Data points: 1233
+- Accuracy on training set: 64.1%
+- Accuracy on test set: 61.2%
 - It's confusion matrix can be found below:
 
 
