@@ -51,7 +51,7 @@ the average winnings are above or below average (see figure below).
    - small;
    - form a valid date;
    - are "lucky" (in terms of cultural belief).
-4. The final model -- a soft-voting classifier using
+4. [The final model](./saved-models/README.md) -- a soft-voting classifier using
 XGBoost, Random Forest and a C-SVM -- discerns good from bad numbers
 with a 67% accuracy, indicating that it has learnt people's betting behaviour.
 
